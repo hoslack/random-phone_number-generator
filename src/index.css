@@ -1,13 +1,61 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.App{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 900px;
+  height: auto;
+  min-height: 600px;
+  background: burlywood;
+  border: #3e2723 1px solid;
+  border-radius: 12px;
+  margin: 0 auto;
+  font-family: "Arial Rounded MT Bold", sans-serif;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.toaster{
+  background: #444;
+  color: white;
+  padding: 16px;
+  position: absolute;
+  z-index: 999;
+  transition: top 0.5s ease;
+}
+.controls{
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  width: 250px;
+}
+button, input, label{
+  margin-top: 10px;
+  height: 25px;
+  text-align: center;
+}
+button{
+  background: #3e2723;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  color: aliceblue;
+  font-family: "Arial Rounded MT Bold", serif;
+}
+label{
+  font-size: xx-large;
+  margin-bottom: 50px;
+}
+.form-div{
+  display: flex;
+  flex-direction: column;
+}
+.number-list-div{
+  border: 1px solid #3e2723;
+  color: #3e2723;
+  border-radius: 12px;
+  display: grid;
+  text-align: center;
+  grid-template-columns: auto auto auto auto;
+  width: 750px;
+  background: #efebe9;
+}
+.number{
+  margin: 15px;
 }
