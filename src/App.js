@@ -67,21 +67,25 @@ class App extends Component {
   }
 
   render() {
+    const max = this.state.numbers.length ? "0" + Math.max(...this.state.numbers) : 0;
+    const min = this.state.numbers.length ? "0" + Math.min(...this.state.numbers) : 0;
     return (
       <div className="App">
         <div style={{display: this.state.displayToaster}} className="toaster">{this.state.toasterText}</div>
         <div className="controls">
           <form>
             <div className="form-div">
-          <input onChange={this.handleInput} type="number" name="quantity" placeholder="Enter number of phone numbers" autoFocus/>
+          <input className="number-input" onChange={this.handleInput} type="number" name="quantity" placeholder="Enter number of phone numbers" autoFocus/>
           <button onClick={this.handleGenerate} type="submit">Generate Numbers</button>
             </div>
           </form>
           <button onClick={this.sortNumbers}>Toggle Sort Numbers</button>
           <button style={{background: "#d50000"}} onClick={this.deleteNumbers}>Delete Stored Numbers</button>
         </div>
-        <label>{this.state.numbers.length}</label>
-          <div className="number-list-div">
+        <label>Total: {this.state.numbers.length}</label>
+        <label>Max: {max}</label>
+        <label>Min: {min}</label>
+        <div className="number-list-div">
           {
             this.state.numbers && this.state.numbers.map((number)=>{
               return <h4 key={uuid()} className="number">{number}</h4>
