@@ -4,6 +4,21 @@ node_js:
 cache:
   directories:
     - node_modules
+dist: trusty
+addons:
+  chrome: stable
+before_script:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - yarn add global nyc
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
 script:
-  - npm test
-  - npm run build
+  - nyc --reporter=lcov yarn run test --watchAll
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
+notifications:
+  email: false

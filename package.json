@@ -44,6 +44,11 @@
         "statements": 90
       }
     },
-    "coverageReporters": ["text"]
+    "coverageReporters": [
+      "text"
+    ]
+  },
+  "devDependencies": {
+    "codecov": "^3.5.0"
   }
 }
