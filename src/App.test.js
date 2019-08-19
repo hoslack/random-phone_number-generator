@@ -16,21 +16,21 @@ describe('App', () => {
     localStorage.removeItem('numbers');
     wrapper.unmount()
   });
-
-  it('App Renders without crashing', () => {
-    expect(wrapper).toBeTruthy();
-  });
-
-  it('renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<App/>, div);
-    ReactDOM.unmountComponentAtNode(div);
-  });
   test('App exists', () => {
     const app = renderer.create(
       <App/>,
     );
     expect(app).toBeDefined();
+  });
+
+  it('App wrapper Renders without crashing', () => {
+    expect(wrapper).toBeTruthy();
+  });
+
+  it('App renders using react renderer', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<App/>, div);
+    ReactDOM.unmountComponentAtNode(div);
   });
 
   it('Generates Random Numbers', () => {

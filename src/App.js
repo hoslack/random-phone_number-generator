@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import uuid from 'uuid';
-
+import ArrowDownwardSharpIcon from '@material-ui/icons/ArrowDownwardSharp';
+import ArrowUpwardSharpIcon from '@material-ui/icons/ArrowUpwardSharp';
 
 class App extends Component {
   constructor(props){
@@ -10,12 +11,16 @@ class App extends Component {
       sorted: false,
       quantity: null,
       toasterText: null,
-      displayToaster: 'none'
+      displayToaster: 'none',
+      sortText: 'Sort'
     };
     this.handleGenerate = this.handleGenerate.bind(this);
     this.sortNumbers = this.sortNumbers.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.deleteNumbers = this.deleteNumbers.bind(this);
+  }
+  componentDidMount() {
+    this.setState({numbers: JSON.parse(localStorage.getItem('numbers'))});
   }
 
   handleInput(e){
@@ -27,7 +32,7 @@ class App extends Component {
     e.preventDefault();
     localStorage.removeItem('numbers');
     this.setState({numbers: []});
-    this.setState({toasterText: 'Numbers deleted successfully', displayToaster: 'block'});
+    this.setState({toasterText: 'Numbers deleted successfully', displayToaster: 'block', sortText: 'Sort', sorted: false,});
     setTimeout(()=>this.setState({displayToaster: 'none'})
       , 1500);
   }
@@ -63,12 +68,17 @@ class App extends Component {
     e.preventDefault();
     let sorted = this.state.sorted;
     let numbers = this.state.numbers;
-    sorted ? this.setState({ sorted: false, numbers: numbers.sort((a,b)=>b-a)}) : this.setState({ sorted: true, numbers: numbers.sort((a,b)=>a-b)})
+    if (sorted===false || sorted==='desc'){
+      this.setState({ sorted: 'asc', sortText:'Descending', numbers: numbers.sort((a,b)=>a-b)})
+    }else {
+      this.setState({ sorted: 'desc', sortText:'Ascending', numbers: numbers.sort((a,b)=>b-a)})
+    }
   }
 
   render() {
-    const max = this.state.numbers.length ? "0" + Math.max(...this.state.numbers) : 0;
-    const min = this.state.numbers.length ? "0" + Math.min(...this.state.numbers) : 0;
+    const length = this.state.numbers ? this.state.numbers.length : 0;
+    const max = this.state.numbers && this.state.numbers.length ? "0" + Math.max(...this.state.numbers) : 0;
+    const min = this.state.numbers && this.state.numbers.length ? "0" + Math.min(...this.state.numbers) : 0;
     return (
       <div className="App">
         <div style={{display: this.state.displayToaster}} className="toaster">{this.state.toasterText}</div>
@@ -79,16 +89,20 @@ class App extends Component {
           <button className="generate-btn" onClick={this.handleGenerate} type="submit">Generate Numbers</button>
             </div>
           </form>
-          <button className="sort-btn" onClick={this.sortNumbers}>Toggle Sort Numbers</button>
           <button className="delete-btn" style={{background: "#d50000"}} onClick={this.deleteNumbers}>Delete Stored Numbers</button>
         </div>
-        <label>Total: {this.state.numbers.length}</label>
+        <label>Total: {length}</label>
         <label>Max: {max}</label>
         <label>Min: {min}</label>
+        {(length!==0) &&(<button className="sort-btn" onClick={this.sortNumbers}>
+          <p style={{margin: '0 10px 0 10px', fontSize: '2em'}}>{this.state.sortText}</p>
+          {(this.state.sorted==='asc' || this.state.sorted===false)&&<ArrowDownwardSharpIcon style={{background: "red"}}/>}
+          {(this.state.sorted==='desc' || this.state.sorted===false)&&<ArrowUpwardSharpIcon style={{background: "red"}}/>}
+        </button>)}
         <div className="number-list-div">
           {
-            this.state.numbers && this.state.numbers.map((number)=>{
-              return <h4 key={uuid()} className="number">{number}</h4>
+            this.state.numbers && this.state.numbers.map((number, index)=>{
+              return <h4 key={uuid()} className="number">{index+1 +". "+number}</h4>
             })
           }
           </div>

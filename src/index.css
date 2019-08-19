@@ -62,3 +62,9 @@ label{
 .number-input{
   margin-top: 60px;
 }
+.sort-btn{
+  border-radius: unset;
+  display: flex;
+  align-items: center;
+  padding: 3px;
+}
