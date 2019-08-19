@@ -58,6 +58,5 @@ $ yarn test
 ```
 ## For test coverage
 ```
-$ npm test -- -u -coverage or
-$ yarn test -- -u --coverage
+$ npm  --coverage or
 ```
