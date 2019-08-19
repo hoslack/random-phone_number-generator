@@ -63,7 +63,7 @@ class App extends Component {
     e.preventDefault();
     let sorted = this.state.sorted;
     let numbers = this.state.numbers;
-    sorted ? this.setState({ sorted: false, numbers: numbers.reverse()}) : this.setState({ sorted: true, numbers: numbers.sort((a,b)=>a-b)})
+    sorted ? this.setState({ sorted: false, numbers: numbers.sort((a,b)=>b-a)}) : this.setState({ sorted: true, numbers: numbers.sort((a,b)=>a-b)})
   }
 
   render() {
@@ -76,11 +76,11 @@ class App extends Component {
           <form>
             <div className="form-div">
           <input className="number-input" onChange={this.handleInput} type="number" name="quantity" placeholder="Enter number of phone numbers" autoFocus/>
-          <button onClick={this.handleGenerate} type="submit">Generate Numbers</button>
+          <button className="generate-btn" onClick={this.handleGenerate} type="submit">Generate Numbers</button>
             </div>
           </form>
-          <button onClick={this.sortNumbers}>Toggle Sort Numbers</button>
-          <button style={{background: "#d50000"}} onClick={this.deleteNumbers}>Delete Stored Numbers</button>
+          <button className="sort-btn" onClick={this.sortNumbers}>Toggle Sort Numbers</button>
+          <button className="delete-btn" style={{background: "#d50000"}} onClick={this.deleteNumbers}>Delete Stored Numbers</button>
         </div>
         <label>Total: {this.state.numbers.length}</label>
         <label>Max: {max}</label>
