@@ -6,6 +6,7 @@ This Application Generates Random Phone numbers for a telecommunications Company
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/82435cf2177348dc9535cbd86e149019)](https://www.codacy.com/app/hoslack/random-phone_number-generator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hoslack/random-phone_number-generator&amp;utm_campaign=Badge_Grade)
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/82435cf2177348dc9535cbd86e149019)](https://www.codacy.com/app/hoslack/random-phone_number-generator?utm_source=github.com&utm_medium=referral&utm_content=hoslack/random-phone_number-generator&utm_campaign=Badge_Coverage)
 
+<img width="953" alt="Screenshot 2019-08-20 at 01 20 14" src="https://user-images.githubusercontent.com/15017978/63303719-51612400-c2e9-11e9-96ef-e66d4211809a.png">
 
 ## Installation and Running
 
